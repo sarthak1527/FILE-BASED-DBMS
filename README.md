@@ -70,29 +70,29 @@ This allows us to compile the project in Windows Mac Os and LINUX
  - Easy to extend
 
 ## Limitations
-i.	No indexing
-ii.	No JOIN operations
-iii.	No transaction management
-iv.	No strict data type validation
-v.	Single-user syste
+-	No indexing
+-	No JOIN operations
+-	No transaction management
+-	No strict data type validation
+-	Single-user syste
 
 ## Future Enhancements
-i.	Implement UPDATE command
-ii.	Add multiple WHERE conditions
-iii.	Add data type enforcement
-iv.	Implement indexing for faster search
-v.	Develop GUI interface
+-	Implement UPDATE command
+-	Add multiple WHERE conditions
+-	Add data type enforcement
+-	Implement indexing for faster search
+-	Develop GUI interface
 
  ## Concepts Demonstrated
-• File Handling in C
-•	Dynamic Memory Allocation
-•	String Tokenization
-•	Conditional Compilation
-•	Structured Programming
+- File Handling in C
+- Dynamic Memory Allocation
+- String Tokenization
+- Conditional Compilation
+- Structured Programming
 
 ## Author
-Sarthak Acharya
-Thapathali Campus 
+- Sarthak Acharya
+- Thapathali Campus 
 
 
 
