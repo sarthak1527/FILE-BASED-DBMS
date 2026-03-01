@@ -54,13 +54,13 @@ typedef struct { <br>
 - Subsequent lines store row data.
 
 ## Cross-Platform Support
-The project uses conditional compilation:
-#ifdef _WIN32
-    #define MKDIR(path) _mkdir(path)
-#else
-    #define MKDIR(path) mkdir(path, 0777)
-#endif
-This allows us to compile the project in Windows Mac Os and LINUX 
+The project uses conditional compilation: <br>
+#ifdef _WIN32 <br>
+    #define MKDIR(path) _mkdir(path) <br>
+#else <br>
+    #define MKDIR(path) mkdir(path, 0777) <br>
+#endif <br>
+This allows us to compile the project in Windows Mac Os and LINUX <br>
  
  ## Advantages
  -	Lightweight and simple
