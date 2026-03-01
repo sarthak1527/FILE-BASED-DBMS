@@ -1,12 +1,10 @@
 
 ## Project Title: File-Based Mini Database Management System in C
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## Overview
 This project is a command-line based Mini Database Management System (DBMS) implemented in C programming language.
 It simulates basic database operations such as creating databases, creating tables, inserting records, selecting data, deleting records with conditions, and dropping tables — using text files for persistent storage.
 The system is lightweight, file-based, and designed to demonstrate core DBMS concepts like query parsing, file handling, and dynamic memory allocation.
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## Objectives
 •	Implement fundamental DBMS operations in C
@@ -15,7 +13,6 @@ ________________________________________________________________________________
 •	Implement command parsing using strtok( )
 •	Use enum and switch-case for structured command execution
 •	Support cross-platform compilation (Windows & macOS/Linux)
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## Features
 The system supports the following commands:
@@ -27,7 +24,6 @@ The system supports the following commands:
 •	DELETE <table_name> WHERE column=value
 •	DROP TABLE <table_name>
 •	EXIT
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## Working Principle
 •	The program reads user input using fgets().
@@ -36,7 +32,6 @@ ________________________________________________________________________________
 •	A switch-case block executes the corresponding function.
 •	Tables are stored as .txt files inside database folders.
 •	Data persists in files even after program termination. 
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## Data Structures
 •	Columns are dynamically allocated using calloc().
@@ -51,14 +46,12 @@ typedef struct {
     int columnCount;
     Column *columns;
 } Table;
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## File Storage Structure
 • Each database is a folder.
 • Each table is a text file.
 •	First line of file stores column names.
 •	Subsequent lines store row data.
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## Cross-Platform Support
 The project uses conditional compilation:
@@ -68,7 +61,6 @@ The project uses conditional compilation:
     #define MKDIR(path) mkdir(path, 0777)
 #endif
 This allows us to compile the project in Windows Mac Os and LINUX 
-______________________________________________________________________________________________________________________________________________________________________________________
  
  ## Advantages
  •	Lightweight and simple
@@ -76,7 +68,6 @@ ________________________________________________________________________________
  • Uses dynamic memory
  • Cross-platform compatible
  • Easy to extend
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## Limitations
 i.	No indexing
@@ -84,7 +75,6 @@ ii.	No JOIN operations
 iii.	No transaction management
 iv.	No strict data type validation
 v.	Single-user syste
-______________________________________________________________________________________________________________________________________________________________________________________
 
 ## Future Enhancements
 i.	Implement UPDATE command
@@ -92,14 +82,14 @@ ii.	Add multiple WHERE conditions
 iii.	Add data type enforcement
 iv.	Implement indexing for faster search
 v.	Develop GUI interface
-______________________________________________________________________________________________________________________________________________________________________________________
+
  ## Concepts Demonstrated
 • File Handling in C
 •	Dynamic Memory Allocation
 •	String Tokenization
 •	Conditional Compilation
 •	Structured Programming
-______________________________________________________________________________________________________________________________________________________________________________________
+
 ## Author
 Sarthak Acharya
 Thapathali Campus 
