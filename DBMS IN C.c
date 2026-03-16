@@ -97,9 +97,12 @@ void createTable(char *name, char *columnsStr) {
 
     int i;
     tbl.columnCount = 1;
-    for (i = 0; columnsStr[i]; i++)
-        if (columnsStr[i] == ',') tbl.columnCount++;
-
+    for (i = 0; i < tbl.columnCount; i++) {
+    fprintf(fp, "%s", tbl.columns[i].name);
+    if (i != tbl.columnCount - 1)
+        fprintf(fp, ",");
+      }
+fprintf(fp, "\n");
     tbl.columns = (Column*)calloc(tbl.columnCount, sizeof(Column));
 
     int idx = 0;
