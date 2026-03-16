@@ -139,7 +139,7 @@ void createTable(char *name, char *columnsStr) {
 }
 /* ---------------- INSERT ---------------- */
 void insertInto(char *table, char *values) {
-
+int i;
     if (strlen(currentDB) == 0) {
         printf("Select a database first.\n");
         return;
@@ -157,20 +157,37 @@ void insertInto(char *table, char *values) {
     char header[500];
     fgets(header, sizeof(header), fp);
 
-    int colCount = 1;
-    for (int i = 0; header[i]; i++)
-        if (header[i] == ',') colCount++;
+    header[strcspn(header, "\n")] = 0;  // remove newline
 
-    fclose(fp);
+    /* count columns in header */
+    int colCount = 0;
+    char headerCopy[500];
+    strcpy(headerCopy, header);
 
-    int valCount = 1;
-    for (int i = 0; values[i]; i++)
-        if (values[i] == ',') valCount++;
+    char *tok = strtok(headerCopy, ",");
+    while (tok) {
+        colCount++;
+        tok = strtok(NULL, ",");
+    }
+
+    /* count values */
+    int valCount = 0;
+    char valuesCopy[500];
+    strcpy(valuesCopy, values);
+
+    tok = strtok(valuesCopy, ",");
+    while (tok) {
+        valCount++;
+        tok = strtok(NULL, ",");
+    }
 
     if (colCount != valCount) {
-        printf("Column count mismatch.\n");
+        printf("Column count mismatch. Expected %d values.\n", colCount);
+        fclose(fp);
         return;
     }
+
+    fclose(fp);
 
     fp = fopen(filePath, "a");
     fprintf(fp, "%s\n", values);
@@ -284,7 +301,7 @@ void dropTable(char *table) {
 
 /* ---------------- MAIN ---------------- */
 int main() {
-
+		int i;
     MKDIR(basePath);
 
     char input[500];
@@ -315,8 +332,14 @@ int main() {
         else if (strcmp(tokens[0], "CREATE") == 0 && strcmp(tokens[1], "TABLE") == 0)
             createTable(tokens[2], tokens[3]);
 
-        else if (strcmp(tokens[0], "INSERT") == 0)
-            insertInto(tokens[1], tokens[2]);
+        else if (strcmp(tokens[0], "INSERT") == 0) {
+    char values[300] = "";
+    for( i = 2; i < count; i++){
+        strcat(values, tokens[i]);
+        if(i != count-1) strcat(values, " ");
+    }
+    insertInto(tokens[1], values);
+}
 
         else if (strcmp(tokens[0], "SELECT") == 0)
             selectAll(tokens[3]);
@@ -339,5 +362,4 @@ int main() {
 
     return 0;
 }
-
 
