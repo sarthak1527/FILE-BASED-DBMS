@@ -97,12 +97,9 @@ void createTable(char *name, char *columnsStr) {
 
     int i;
     tbl.columnCount = 1;
-    for (i = 0; i < tbl.columnCount; i++) {
-    fprintf(fp, "%s", tbl.columns[i].name);
-    if (i != tbl.columnCount - 1)
-        fprintf(fp, ",");
-      }
-fprintf(fp, "\n");
+    for (i = 0; columnsStr[i]; i++)
+        if (columnsStr[i] == ',') tbl.columnCount++;
+
     tbl.columns = (Column*)calloc(tbl.columnCount, sizeof(Column));
 
     int idx = 0;
@@ -116,24 +113,30 @@ fprintf(fp, "\n");
 
     char filePath[300];
     sprintf(filePath, "%s%s%s.txt", currentDB, PATH_SEP, name);
-FILE *check = fopen(filePath, "r");
-if (check) {
-    fclose(check);
-    printf("Table already exists.\n");
-    free(tbl.columns);
-    return;
-}
+
+    FILE *check = fopen(filePath, "r");
+    if (check) {
+        fclose(check);
+        printf("Table already exists.\n");
+        free(tbl.columns);
+        return;
+    }
+
     FILE *fp = fopen(filePath, "w");
-    for (i = 0; i < tbl.columnCount; i++)
-        fprintf(fp, "%s,", tbl.columns[i].name);
+
+    for (i = 0; i < tbl.columnCount; i++) {
+        fprintf(fp, "%s", tbl.columns[i].name);
+        if (i != tbl.columnCount - 1)
+            fprintf(fp, ",");
+    }
 
     fprintf(fp, "\n");
-    fclose(fp);
 
+    fclose(fp);
     free(tbl.columns);
+
     printf("Table '%s' created.\n", name);
 }
-
 /* ---------------- INSERT ---------------- */
 void insertInto(char *table, char *values) {
 
